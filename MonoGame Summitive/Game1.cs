@@ -8,6 +8,17 @@ namespace MonoGame_Summitive
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Texture2D gameEndTexture;
+        Texture2D gameIntroTexture;
+
+        enum Screen
+        {
+            Intro,
+            AnimationRight, 
+            AnimationLeft,
+            GameOut
+        }
+        Screen screen;
 
         public Game1()
         {
@@ -18,7 +29,7 @@ namespace MonoGame_Summitive
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            
 
             base.Initialize();
         }
@@ -27,7 +38,7 @@ namespace MonoGame_Summitive
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -35,7 +46,7 @@ namespace MonoGame_Summitive
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
@@ -44,7 +55,7 @@ namespace MonoGame_Summitive
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            
 
             base.Draw(gameTime);
         }
