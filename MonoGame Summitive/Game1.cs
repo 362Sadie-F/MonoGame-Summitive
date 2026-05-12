@@ -83,11 +83,16 @@ namespace MonoGame_Summitive
                     screen = Screen.AnimationDay;
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.N))
-            {
-                screen = Screen.AnimationNight;
 
+            if (screen == Screen.AnimationDay)
+            {
+                if (keyboardState.IsKeyDown(Keys.N))
+                {
+                    screen = Screen.AnimationNight;
+
+                }
             }
+
 
             base.Update(gameTime);
         }
