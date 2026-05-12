@@ -88,7 +88,7 @@ namespace MonoGame_Summitive
             {
                 if (keyboardState.IsKeyDown(Keys.N))
                 {
-                    screen = Screen.AnimationNight;
+                    screen = Screen.AnimationNight; 
 
                 }
             }
