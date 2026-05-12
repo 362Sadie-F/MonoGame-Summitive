@@ -12,9 +12,16 @@ namespace MonoGame_Summitive
         Texture2D gameIntroTexture;
         Texture2D animationRTexture;
         Texture2D animationLTexture;
+        Texture2D whiteButterfly;
+        Texture2D brownButterfly;
+        Texture2D blueButterfly;
+        Texture2D yellowButterfly;
+        Texture2D orangeButterfly;
+
         Rectangle window;
         Rectangle nextSign;
         MouseState mouseState;
+        KeyboardState keyboardState;
 
         enum Screen
         {
@@ -49,9 +56,14 @@ namespace MonoGame_Summitive
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             gameIntroTexture = Content.Load<Texture2D>("In-The-Garden-Intro-Screen");
-            //animationRTexture = Content.Load<Texture2D>("");
-            //animationLTexture = Content.Load<Texture2D>("");
-           // gameEndTexture = Content.Load<Texture2D>("");
+            animationRTexture = Content.Load<Texture2D>("GardenDay");
+            animationLTexture = Content.Load<Texture2D>("GardenNight");
+            // gameEndTexture = Content.Load<Texture2D>("");
+            brownButterfly = Content.Load<Texture2D>("brownButterfly");
+            whiteButterfly = Content.Load<Texture2D>("whiteButterfly");
+            blueButterfly = Content.Load<Texture2D>("blueButterfly");
+            yellowButterfly  = Content.Load<Texture2D>("yellowButterfly");
+            orangeButterfly  = Content.Load<Texture2D>("orangeButterfly");
 
         }
 
@@ -60,6 +72,8 @@ namespace MonoGame_Summitive
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             mouseState = Mouse.GetState();
+            keyboardState = Keyboard.GetState();
+
             Window.Title = "In The Garden " + mouseState.Position.ToString();
 
             if (nextSign.Contains(mouseState.Position))
@@ -68,6 +82,11 @@ namespace MonoGame_Summitive
                 {
                     screen = Screen.AnimationDay;
                 }
+            }
+            if (keyboardState.IsKeyDown(Keys.N))
+            {
+                screen = Screen.AnimationNight;
+
             }
 
             base.Update(gameTime);
@@ -88,6 +107,11 @@ namespace MonoGame_Summitive
             if (screen == Screen.AnimationDay)
             {
                 _spriteBatch.Draw(animationRTexture, new Rectangle(0, 0, 800, 600), Color.White);
+                _spriteBatch.Draw(brownButterfly, new Rectangle(685, 43, 40, 40), Color.White);
+                _spriteBatch.Draw(whiteButterfly, new Rectangle(249, 218, 45, 40), Color.White);
+                _spriteBatch.Draw(orangeButterfly, new Rectangle(110, 73, 45, 40), Color.White);
+                _spriteBatch.Draw(yellowButterfly, new Rectangle(690, 370, 45, 40), Color.White);
+                _spriteBatch.Draw(blueButterfly, new Rectangle(47, 333, 40, 40), Color.White);
 
             }
 
