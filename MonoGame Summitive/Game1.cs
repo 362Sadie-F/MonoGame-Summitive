@@ -24,6 +24,12 @@ namespace MonoGame_Summitive
         MouseState mouseState;
         KeyboardState keyboardState;
 
+       Rectangle brButterflyRect;
+       Rectangle blButterflyRect; 
+       Rectangle yeButterflyRect; 
+       Rectangle whButterflyRect; 
+       Rectangle orButterflyRect;
+
         enum Screen
         {
             Intro,
@@ -50,6 +56,11 @@ namespace MonoGame_Summitive
 
             nextSign = new Rectangle(385, 415, 165, 45);
             exitSign = new Rectangle(345, 315, 165, 50);
+            brButterflyRect = new Rectangle(685, 43, 40, 40);
+            blButterflyRect = new Rectangle(47, 333, 40, 40);
+            yeButterflyRect = new Rectangle(690, 370, 45, 40);
+            whButterflyRect = new Rectangle(249, 218, 45, 40);
+            orButterflyRect = new Rectangle(110, 73, 45, 40);
 
             base.Initialize();
         }
@@ -112,6 +123,8 @@ namespace MonoGame_Summitive
                 }
             }
 
+
+
             base.Update(gameTime);
         }
 
@@ -130,11 +143,11 @@ namespace MonoGame_Summitive
             if (screen == Screen.AnimationDay)
             {
                 _spriteBatch.Draw(animationRTexture, new Rectangle(0, 0, 800, 600), Color.White);
-                _spriteBatch.Draw(brownButterfly, new Rectangle(685, 43, 40, 40), Color.White);
-                _spriteBatch.Draw(whiteButterfly, new Rectangle(249, 218, 45, 40), Color.White);
-                _spriteBatch.Draw(orangeButterfly, new Rectangle(110, 73, 45, 40), Color.White);
-                _spriteBatch.Draw(yellowButterfly, new Rectangle(690, 370, 45, 40), Color.White);
-                _spriteBatch.Draw(blueButterfly, new Rectangle(47, 333, 40, 40), Color.White);
+                _spriteBatch.Draw(brownButterfly, brButterflyRect, Color.White);
+                _spriteBatch.Draw(whiteButterfly, whButterflyRect, Color.White);
+                _spriteBatch.Draw(orangeButterfly, orButterflyRect, Color.White);
+                _spriteBatch.Draw(yellowButterfly, yeButterflyRect, Color.White);
+                _spriteBatch.Draw(blueButterfly, blButterflyRect, Color.White);
 
             }
 
