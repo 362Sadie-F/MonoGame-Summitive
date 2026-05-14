@@ -20,6 +20,7 @@ namespace MonoGame_Summitive
 
         Rectangle window;
         Rectangle nextSign;
+        Rectangle exitSign;
         MouseState mouseState;
         KeyboardState keyboardState;
 
@@ -48,6 +49,7 @@ namespace MonoGame_Summitive
             _graphics.ApplyChanges();
 
             nextSign = new Rectangle(385, 415, 165, 45);
+            exitSign = new Rectangle(345, 315, 165, 50);
 
             base.Initialize();
         }
@@ -58,7 +60,7 @@ namespace MonoGame_Summitive
             gameIntroTexture = Content.Load<Texture2D>("In-The-Garden-Intro-Screen");
             animationRTexture = Content.Load<Texture2D>("GardenDay");
             animationLTexture = Content.Load<Texture2D>("GardenNight");
-            // gameEndTexture = Content.Load<Texture2D>("");
+            gameEndTexture = Content.Load<Texture2D>("In-The-Garden-Out");
             brownButterfly = Content.Load<Texture2D>("brownButterfly");
             whiteButterfly = Content.Load<Texture2D>("whiteButterfly");
             blueButterfly = Content.Load<Texture2D>("blueButterfly");
@@ -84,6 +86,14 @@ namespace MonoGame_Summitive
                 }
             }
 
+            if (exitSign.Contains(mouseState.Position))
+            {
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    Exit();
+                }
+            }
+
             if (screen == Screen.AnimationDay)
             {
                 if (keyboardState.IsKeyDown(Keys.N))
@@ -93,6 +103,14 @@ namespace MonoGame_Summitive
                 }
             }
 
+            if (screen == Screen.AnimationNight)
+            {
+                if (keyboardState.IsKeyDown(Keys.O))
+                {
+                    screen = Screen.GameOut;
+
+                }
+            }
 
             base.Update(gameTime);
         }

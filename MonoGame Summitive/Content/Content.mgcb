@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:In-The-Garden-Intro-Screen.png
 
+#begin In-The-Garden-Out.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:In-The-Garden-Out.png
+
 #begin orangeButterfly.png
 /importer:TextureImporter
 /processor:TextureProcessor
