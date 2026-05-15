@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -17,6 +18,10 @@ namespace MonoGame_Summitive
         Texture2D blueButterfly;
         Texture2D yellowButterfly;
         Texture2D orangeButterfly;
+        SoundEffect birdsChirp;
+        SoundEffectInstance birdsChirpInstance;
+        SoundEffect insectsEffect;
+        SoundEffectInstance insectsEffectInstance;
 
         Rectangle window;
         Rectangle nextSign;
@@ -62,6 +67,8 @@ namespace MonoGame_Summitive
             whButterflyRect = new Rectangle(249, 218, 45, 40);
             orButterflyRect = new Rectangle(110, 73, 45, 40);
 
+            
+
             base.Initialize();
         }
 
@@ -77,6 +84,10 @@ namespace MonoGame_Summitive
             blueButterfly = Content.Load<Texture2D>("blueButterfly");
             yellowButterfly  = Content.Load<Texture2D>("yellowButterfly");
             orangeButterfly  = Content.Load<Texture2D>("orangeButterfly");
+            birdsChirp = Content.Load<SoundEffect>("birds");
+            birdsChirpInstance = birdsChirp.CreateInstance();
+            insectsEffect = Content.Load<SoundEffect>("insects");
+            insectsEffectInstance = birdsChirp.CreateInstance();
 
         }
 
@@ -86,43 +97,59 @@ namespace MonoGame_Summitive
                 Exit();
             mouseState = Mouse.GetState();
             keyboardState = Keyboard.GetState();
+            birdsChirpInstance.IsLooped = false;
 
             Window.Title = "In The Garden " + mouseState.Position.ToString();
-
-            if (nextSign.Contains(mouseState.Position))
+ 
+            if (screen == Screen.GameOut)
             {
-                if (mouseState.LeftButton == ButtonState.Pressed)
+                if (nextSign.Contains(mouseState.Position))
                 {
-                    screen = Screen.AnimationDay;
+                    if (mouseState.RightButton == ButtonState.Pressed)
+                    {
+                        screen = Screen.Intro;
+                    }
+                }
+                if (exitSign.Contains(mouseState.Position))
+                {
+                    if (mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        Exit();
+                    }
                 }
             }
 
-            if (exitSign.Contains(mouseState.Position))
+            else if (screen == Screen.Intro)
             {
-                if (mouseState.LeftButton == ButtonState.Pressed)
+                if (nextSign.Contains(mouseState.Position))
                 {
-                    Exit();
+                    if (mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        screen = Screen.AnimationDay;
+                        birdsChirpInstance.Play();
+                    }
                 }
             }
 
-            if (screen == Screen.AnimationDay)
+            else if (screen == Screen.AnimationDay)
             {
-                if (keyboardState.IsKeyDown(Keys.N))
+                         
+                if (birdsChirpInstance.State == SoundState.Stopped)
                 {
-                    screen = Screen.AnimationNight; 
-
+                    screen = Screen.AnimationNight;
+                    
                 }
             }
 
-            if (screen == Screen.AnimationNight)
+            else if (screen == Screen.AnimationNight)
             {
+                
                 if (keyboardState.IsKeyDown(Keys.O))
                 {
                     screen = Screen.GameOut;
 
                 }
             }
-
 
 
             base.Update(gameTime);
@@ -140,7 +167,7 @@ namespace MonoGame_Summitive
 
             }
 
-            if (screen == Screen.AnimationDay)
+            else if (screen == Screen.AnimationDay)
             {
                 _spriteBatch.Draw(animationRTexture, new Rectangle(0, 0, 800, 600), Color.White);
                 _spriteBatch.Draw(brownButterfly, brButterflyRect, Color.White);
@@ -151,13 +178,13 @@ namespace MonoGame_Summitive
 
             }
 
-            if (screen == Screen.AnimationNight)
+            else if (screen == Screen.AnimationNight)
             {
                 _spriteBatch.Draw(animationLTexture, new Rectangle(0, 0, 800, 600), Color.White);
                 
             }
 
-            if (screen == Screen.GameOut)
+            else if (screen == Screen.GameOut)
             {
                 _spriteBatch.Draw(gameEndTexture, new Rectangle(0, 0, 800, 600), Color.White);
 

@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin birds.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:birds.mp3
+
 #begin blueButterfly.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,6 +90,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:In-The-Garden-Out.png
+
+#begin insects.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:insects.mp3
 
 #begin orangeButterfly.png
 /importer:TextureImporter
