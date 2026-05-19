@@ -97,6 +97,13 @@
 /processorParam:Quality=Best
 /build:insects.mp3
 
+#begin Instructions.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Instructions.spritefont
+
 #begin orangeButterfly.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -108,6 +115,11 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:orangeButterfly.png
+
+#begin pixelFont.otf
+/importer:
+/processor:
+/build:pixelFont.otf
 
 #begin whiteButterfly.png
 /importer:TextureImporter

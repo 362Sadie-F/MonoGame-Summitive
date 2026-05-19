@@ -22,6 +22,7 @@ namespace MonoGame_Summitive
         SoundEffectInstance birdsChirpInstance;
         SoundEffect insectsEffect;
         SoundEffectInstance insectsEffectInstance;
+        SpriteFont instructions;
 
         Rectangle window;
         Rectangle nextSign;
@@ -34,6 +35,12 @@ namespace MonoGame_Summitive
        Rectangle yeButterflyRect; 
        Rectangle whButterflyRect; 
        Rectangle orButterflyRect;
+
+        Vector2 brButterflySpeed;
+        Vector2 blButterflySpeed;
+        Vector2 yeButterflySpeed;
+        Vector2 orButterflySpeed;
+        Vector2 whButterflySpeed;
 
         enum Screen
         {
@@ -67,7 +74,11 @@ namespace MonoGame_Summitive
             whButterflyRect = new Rectangle(249, 218, 45, 40);
             orButterflyRect = new Rectangle(110, 73, 45, 40);
 
-            
+            brButterflySpeed = new Vector2(4, 5);
+            blButterflySpeed = new Vector2(3, 4);
+            yeButterflySpeed = new Vector2(3, 3);
+            orButterflySpeed = new Vector2(4, 5);
+            whButterflySpeed = new Vector2(2, 4);
 
             base.Initialize();
         }
@@ -88,6 +99,7 @@ namespace MonoGame_Summitive
             birdsChirpInstance = birdsChirp.CreateInstance();
             insectsEffect = Content.Load<SoundEffect>("insects");
             insectsEffectInstance = birdsChirp.CreateInstance();
+            instructions = Content.Load<SpriteFont>("pixelFont");
 
         }
 
@@ -133,7 +145,71 @@ namespace MonoGame_Summitive
 
             else if (screen == Screen.AnimationDay)
             {
-                         
+                brButterflyRect.X += (int)brButterflySpeed.X;
+                if (brButterflyRect.Right > window.Width || brButterflyRect.Left < 0)
+                {
+                    brButterflySpeed.X *= -1;
+                   
+                }
+                if (brButterflyRect.Bottom > window.Height || brButterflyRect.Top < 0)
+                {
+                    brButterflySpeed.Y *= -1;
+                    
+                }
+                brButterflyRect.Y += (int)brButterflySpeed.Y;
+
+                blButterflyRect.X += (int)blButterflySpeed.X;
+                if (blButterflyRect.Right > window.Width || blButterflyRect.Left < 0)
+                {
+                    blButterflySpeed.X *= -1;
+
+                }
+                if (blButterflyRect.Bottom > window.Height || blButterflyRect.Top < 0)
+                {
+                    blButterflySpeed.Y *= -1;
+
+                }
+                blButterflyRect.Y += (int)blButterflySpeed.Y;
+
+                yeButterflyRect.X += (int)yeButterflySpeed.X;
+                if (yeButterflyRect.Right > window.Width || yeButterflyRect.Left < 0)
+                {
+                    yeButterflySpeed.X *= -1;
+
+                }
+                if (yeButterflyRect.Bottom > window.Height || yeButterflyRect.Top < 0)
+                {
+                    yeButterflySpeed.Y *= -1;
+
+                }
+                yeButterflyRect.Y += (int)yeButterflySpeed.Y;
+
+                orButterflyRect.X += (int)orButterflySpeed.X;
+                if (orButterflyRect.Right > window.Width || orButterflyRect.Left < 0)
+                {
+                    orButterflySpeed.X *= -1;
+
+                }
+                if (orButterflyRect.Bottom > window.Height || orButterflyRect.Top < 0)
+                {
+                    orButterflySpeed.Y *= -1;
+
+                }
+                orButterflyRect.Y += (int)orButterflySpeed.Y;
+
+                whButterflyRect.X += (int)whButterflySpeed.X;
+                if (whButterflyRect.Right > window.Width || whButterflyRect.Left < 0)
+                {
+                    whButterflySpeed.X *= -1;
+
+                }
+                if (whButterflyRect.Bottom > window.Height || whButterflyRect.Top < 0)
+                {
+                    whButterflySpeed.Y *= -1;
+
+                }
+                whButterflyRect.Y += (int)whButterflySpeed.Y;
+
                 if (birdsChirpInstance.State == SoundState.Stopped)
                 {
                     screen = Screen.AnimationNight;
@@ -181,7 +257,7 @@ namespace MonoGame_Summitive
             else if (screen == Screen.AnimationNight)
             {
                 _spriteBatch.Draw(animationLTexture, new Rectangle(0, 0, 800, 600), Color.White);
-                
+                _spriteBatch.DrawString(instructions, "Press O to end animation.", new Rectangle(600, 200, 25, 25), Color.Gold);
             }
 
             else if (screen == Screen.GameOut)
